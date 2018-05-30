@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="css/style.css">
   </head>
   <body>
-    <h1>Удаление компонентов и обновление состояний</h1>
+    <h1>Использование функции в виде свойства</h1>
 
     <div id="program"></div>
 
@@ -27,11 +27,11 @@
           this.setState ({edit: true});
         };
         remove = () => {
-          alert ("Нажата кнопка удалить");
+          this.props.deleteBlock(this.props.index);
         };
         save = () => {
           var value = this.refs.newTxt.value;
-          alert (value);
+          this.props.update(value, this.props.index);
           this.setState ({edit: false})
         };
 
@@ -90,7 +90,7 @@
 
         eachTask = (item, i) => {
           return (
-            <Task key={i} index={i}>
+            <Task key={i} index={i} update={this.updateText} deleteBlock={this.deleteBlock}>
               {item}
             </Task>
           );
@@ -103,7 +103,7 @@
             </div>
           );
         }
-        
+
       }
 
       const app =  document.getElementById('program');
