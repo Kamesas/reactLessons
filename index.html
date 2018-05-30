@@ -8,7 +8,7 @@
     <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
   </head>
   <body>
-    <h1>Компоненты (части сайта)</h1>
+    <h1>Один компонент - один родительский элемент</h1>
 
     <div id="example"></div>
 
@@ -16,12 +16,25 @@
       
       class Block extends React.Component {
           render() {
-              return ( <h3>Second app - components!</h3> ); 
+              const comp = 'components';
+              return (
+                <div>
+                  <h3>Second app - {comp}!</h3>
+                  <p>Этот параграф и верзний h3 нужно обернуть в один блок</p>
+                  <span>А вот так можно сложить  2 + 2 = {2 + 2} </span>
+                  <hr />
+                </div> 
+              ); 
           }
       }
 
       ReactDOM.render(
-        <Block />,
+        <div>
+          <Block />
+          <Block />
+          <Block />
+          <hr />
+        </div>,
         document.getElementById('example') // в блок #example вставляем вышенаписанный h3
       );
 
