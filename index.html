@@ -2,40 +2,45 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <title>Hello World</title>
+    <title>Lessons React</title>
     <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <link rel="stylesheet" href="css/style.css">
   </head>
   <body>
-    <h1>Свойства</h1>
+    <h1>События и старт ToDo-шника</h1>
 
-    <div id="example"></div>
+    <div id="program"></div>
 
     <script type="text/babel">  
+      
+      class Task extends React.Component {
+        edit() {  // ф-ция запустится при клике кнопки ligth
+          alert ("Нажата кнопка редактировать");
+        };
+        remove() { //// ф-ция запустится при клике кнопки red
+          alert ("Нажата кнопка удалить");
+        };
+        render() {
+          return (
+            <div className="box">              
+              <div className="text">{this.props.children}</div>
+              <button onClick={this.edit} className="btn light">Редактировать</button>
+              <button onClick={this.remove} className="btn red">Удалить</button>
+            </div>
+          );
+        } 
+      }     
 
-      class Game extends React.Component {
-          render() {
-            return (
-              <div>
-                <h1>{this.props.name}</h1>
-                <h2>{this.props.age}</h2>
-              </div>
-            );
-          }
-      }  
-
-      const app =  document.getElementById('example');
-
-      ReactDOM.render(
-
-        <div>
-          <Game name="Forza" age="+18" />
-          <Game name="MK - 10" age="+25" />
-          <Game name="GTA V" age="+20" />
-        </div>,
+      const app =  document.getElementById('program');
+      ReactDOM.render(        
+        <div className="field">
+          <Task>How are you?</Task>
+          <Task>my task - 2</Task>
+          <Task>Task number 3</Task>
+        </div>,    
         app
-
       );
 
     </script>
