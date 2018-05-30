@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="css/style.css">
   </head>
   <body>
-    <h1>Атрибуты refs (ref="newTxt")</h1>
+    <h1>Множественные дочерние компоненты</h1>
 
     <div id="program"></div>
 
@@ -63,15 +63,36 @@
 
       }
 
+      class Field extends React.Component {
+
+        constructor(props) {
+          super(props);
+          this.state = {
+            tasks: [
+              'Необходимо купить молоко!',
+              'Надо почистить зубы',
+              'Просто отдохнуть'
+            ]
+          };
+        };
+
+        render() {
+          return (
+            <div className="field">
+              {
+                this.state.tasks.map (function (item, i) {
+                  return (<Task key={i}>{item}</Task>);
+                })
+              }
+            </div>
+          );
+        }
+
+      }
+
       const app =  document.getElementById('program');
-      ReactDOM.render(        
-        <div className="field">
-          <Task>How are you?</Task>
-          <Task>my task - 2</Task>
-          <Task>Task number 3</Task>
-        </div>,    
-        app
-      );
+      ReactDOM.render(<Field />, app);
+      
     </script>
   </body>
 </html>
