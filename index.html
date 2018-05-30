@@ -8,34 +8,34 @@
     <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
   </head>
   <body>
-    <h1>Один компонент - один родительский элемент</h1>
+    <h1>Свойства</h1>
 
     <div id="example"></div>
 
-    <script type="text/babel">
-      
-      class Block extends React.Component {
+    <script type="text/babel">  
+
+      class Game extends React.Component {
           render() {
-              const comp = 'components';
-              return (
-                <div>
-                  <h3>Second app - {comp}!</h3>
-                  <p>Этот параграф и верзний h3 нужно обернуть в один блок</p>
-                  <span>А вот так можно сложить  2 + 2 = {2 + 2} </span>
-                  <hr />
-                </div> 
-              ); 
+            return (
+              <div>
+                <h1>{this.props.name}</h1>
+                <h2>{this.props.age}</h2>
+              </div>
+            );
           }
-      }
+      }  
+
+      const app =  document.getElementById('example');
 
       ReactDOM.render(
+
         <div>
-          <Block />
-          <Block />
-          <Block />
-          <hr />
+          <Game name="Forza" age="+18" />
+          <Game name="MK - 10" age="+25" />
+          <Game name="GTA V" age="+20" />
         </div>,
-        document.getElementById('example') // в блок #example вставляем вышенаписанный h3
+        app
+
       );
 
     </script>
