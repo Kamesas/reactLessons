@@ -8,16 +8,21 @@
     <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
   </head>
   <body>
+    <h1>Компоненты (части сайта)</h1>
 
     <div id="example"></div>
 
-    <script type="text/babel"> // указывать type обязательно
+    <script type="text/babel">
+      
+      class Block extends React.Component {
+          render() {
+              return ( <h3>Second app - components!</h3> ); 
+          }
+      }
 
       ReactDOM.render(
-
-        <h3>My first React app!</h3>,
+        <Block />,
         document.getElementById('example') // в блок #example вставляем вышенаписанный h3
-
       );
 
     </script>
