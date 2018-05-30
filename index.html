@@ -9,39 +9,45 @@
     <link rel="stylesheet" href="css/style.css">
   </head>
   <body>
-    <h1>События и старт ToDo-шника</h1>
+    <h1>State (Состояние)</h1>
+    <p>Состояния в отличие от свойств работают динамически, без перезагрузки</p>
 
     <div id="program"></div>
 
-    <script type="text/babel">  
-      
-      class Task extends React.Component {
-        edit() {  // ф-ция запустится при клике кнопки ligth
-          alert ("Нажата кнопка редактировать");
+    <script type="text/babel">     
+     
+      class Check extends React.Component {
+
+        constructor(props) {
+          super(props);
+          this.state = {
+            checked: true,
+          };
         };
-        remove() { //// ф-ция запустится при клике кнопки red
-          alert ("Нажата кнопка удалить");
+
+        handleCheck = () => {
+          this.setState({checked: !this.state.checked});
         };
+
         render() {
+          var message;
+          if (this.state.checked) {
+            message = 'выбран';
+          } else {
+            message = 'не выбран';
+          }
           return (
-            <div className="box">              
-              <div className="text">{this.props.children}</div>
-              <button onClick={this.edit} className="btn light">Редактировать</button>
-              <button onClick={this.remove} className="btn red">Удалить</button>
+            <div>
+              <input type="checkbox" onChange={this.handleCheck} defaultChecked={this.state.checked} />
+              <p>Чекбокс {message}</p>
             </div>
           );
-        } 
-      }     
+        }
+
+      } 
 
       const app =  document.getElementById('program');
-      ReactDOM.render(        
-        <div className="field">
-          <Task>How are you?</Task>
-          <Task>my task - 2</Task>
-          <Task>Task number 3</Task>
-        </div>,    
-        app
-      );
+      ReactDOM.render(<div><Check/></div>, app);
 
     </script>
 
