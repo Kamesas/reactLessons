@@ -54,3 +54,17 @@ button.btn {
   background-color: #b6821a;
   border-color: #946912;
 }
+
+.box textarea {
+  width: 94%;
+  padding: 8px;
+}
+
+button.btn.success {
+  color: #000;
+  background-color: #6ad821;
+  border: 2px solid #288c20;
+  width: 50%;
+  margin: auto;
+  display: block;
+}

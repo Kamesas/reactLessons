@@ -9,47 +9,63 @@
     <link rel="stylesheet" href="css/style.css">
   </head>
   <body>
-    <h1>State (Состояние)</h1>
-    <p>Состояния в отличие от свойств работают динамически, без перезагрузки</p>
+    <h1>Добавление состояния к объектам</h1>
 
     <div id="program"></div>
 
-    <script type="text/babel">     
-     
-      class Check extends React.Component {
-
-        constructor(props) {
-          super(props);
-          this.state = {
-            checked: true,
-          };
-        };
-
-        handleCheck = () => {
-          this.setState({checked: !this.state.checked});
-        };
-
-        render() {
-          var message;
-          if (this.state.checked) {
-            message = 'выбран';
-          } else {
-            message = 'не выбран';
-          }
-          return (
-            <div>
-              <input type="checkbox" onChange={this.handleCheck} defaultChecked={this.state.checked} />
-              <p>Чекбокс {message}</p>
-            </div>
-          );
-        }
-
-      } 
+    <script type="text/babel">  
+      
+      class Task extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      edit: false,
+    };
+  };
+  edit = () => {
+    this.setState ({edit: true});
+  };
+  remove = () => {
+    alert ("Нажата кнопка удалить");
+  };
+  save = () => {
+    this.setState ({edit: false})
+  };
+  rendNorm = () => {
+    return (
+      <div className="box">
+        <div className="text">{this.props.children}</div>
+        <button onClick={this.edit} className="btn light">Редактировать</button>
+        <button onClick={this.remove} className="btn red">Удалить</button>
+      </div>
+    );
+  };
+  rendEdit = () => {
+    return (
+      <div className="box">
+        <textarea defaultValue={this.props.children}></textarea>
+        <button onClick={this.save} className="btn success">Сохранить</button>
+      </div>
+    );
+  };
+  render() {
+    if (this.state.edit) {
+      return this.rendEdit ();
+    } else {
+      return this.rendNorm ();
+    }
+  }
+}
 
       const app =  document.getElementById('program');
-      ReactDOM.render(<div><Check/></div>, app);
-
+      ReactDOM.render(        
+        <div className="field">
+          <Task>How are you?</Task>
+          <Task>my task - 2</Task>
+          <Task>Task number 3</Task>
+        </div>,    
+        app
+      );
     </script>
-
   </body>
 </html>
