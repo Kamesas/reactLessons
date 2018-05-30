@@ -68,3 +68,9 @@ button.btn.success {
   margin: auto;
   display: block;
 }
+
+button.btn.new {
+  color: #000;
+  margin-bottom: 5px;
+  width: 100%;
+}

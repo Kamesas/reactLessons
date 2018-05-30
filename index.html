@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="css/style.css">
   </head>
   <body>
-    <h1>Использование функции в виде свойства</h1>
+    <h1>Создание новых компонентов</h1>
 
     <div id="program"></div>
 
@@ -68,12 +68,14 @@
         constructor(props) {
           super(props);
           this.state = {
-            tasks: [
-              'Необходимо купить молоко!',
-              'Надо почистить зубы',
-              'Просто отдохнуть'
-            ]
+            tasks: []
           };
+        };
+
+        add = (addTask) => {
+          var arr = this.state.tasks;
+          arr.push (addTask);
+          this.setState ({tasks: arr});
         };
 
         deleteBlock = (i) => {
@@ -99,6 +101,7 @@
         render() {
           return (
             <div className="field">
+              <button onClick={this.add.bind(null, 'Нажмите редактировать')} className="btn new">Добавить таск</button>
               {this.state.tasks.map (this.eachTask)}
             </div>
           );
